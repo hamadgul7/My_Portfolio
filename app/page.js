@@ -27,12 +27,12 @@ export default async function Home() {
   return (
     <div suppressHydrationWarning >
       <HeroSection />
-      <AboutSection />
+      {/* <AboutSection />
       <Experience />
       <Skills />
       <Projects />
       <Education />
-      <ContactSection />
+      <ContactSection /> */}
     </div>
   )
 };
