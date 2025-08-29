@@ -43,7 +43,17 @@ export const projectsData = [
         role: 'Backend Developer',
         code: '',
         demo: '',
+    },
+    {
+        id: 6,
+        name: 'CSV Cleaning System',
+        description: "Developed a CSV cleaning system that removes duplicate or common numbers by cross-checking against a central MySQL database. Implemented stream-based CSV parsing with csv-parser and fast-csv to handle large files efficiently without memory overload. Designed a job queue with Redis and Bull to process user-uploaded files asynchronously, ensuring scalability and fault tolerance. Built a temporary table mechanism in MySQL to validate and compare user data against existing records for accurate filtering. Automated generation of cleaned CSV output files for end-users, improving data quality and usability. Optimized database operations with connection pooling to achieve reliable high-throughput processing. Improved user experience by delivering fast and accurate CSV reports, reducing manual cleanup effort.",
+        tools: ['NodeJS', 'Express', 'MySQL', 'Redis', 'Bull', 'csv-parser', 'fast-csv', 'Connection Pooling', 'JWT', 'Node Mailer'],
+        role: 'Backend Developer',
+        code: '',
+        demo: ''
     }
+
 
 ];
 
