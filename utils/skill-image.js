@@ -101,6 +101,12 @@ export const skillsImage = (skill) => {
       return nodejs;
     case 'cypress':
       return cypress;
+    case 'mysql':
+      return mysql;
+    case 'html':
+      return html;
+    case 'css':
+      return css;
     default:
       break;
   }
