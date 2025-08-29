@@ -3,7 +3,13 @@ export const experiences = [
     id: 1,
     title: 'Backend Developer',
     company: "CompliXen.",
-    duration: "(May 2025 - Present)"
+    duration: "(May 2025 - July 2025)"
+  },
+  {
+    id: 1,
+    title: 'Backend Developer',
+    company: "Dial Edge Telecom.",
+    duration: "(Aug 2025 - Present)"
   },
   // {
   //   id: 2,
