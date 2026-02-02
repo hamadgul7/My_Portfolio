@@ -107,6 +107,8 @@ export const skillsImage = (skill) => {
       return html;
     case 'css':
       return css;
+    case 'ubuntu':
+      return ubuntu;
     default:
       break;
   }
