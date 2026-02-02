@@ -1,38 +1,5 @@
-import axios from 'axios';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-
-// Create and configure Nodemailer transporter
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.GMAIL_PASSKEY,
-  },
-  tls: {
-    rejectUnauthorized: false
-  },
-  connectionTimeout: 10000, // 10 seconds
-  greetingTimeout: 10000,
-});
-
-// Helper function to send a message via Telegram
-// async function sendTelegramMessage(token, chat_id, message) {
-//   const url = `https://api.telegram.org/bot${token}/sendMessage`;
-//   try {
-//     const res = await axios.post(url, {
-//       text: message,
-//       chat_id,
-//     });
-//     return res.data.ok;
-//   } catch (error) {
-//     console.error('Error sending Telegram message:', error.response?.data || error.message);
-//     return false;
-//   }
-// };
 
 // HTML email template
 const generateEmailTemplate = (name, email, userMessage) => `
@@ -54,8 +21,36 @@ const generateEmailTemplate = (name, email, userMessage) => `
 async function sendEmail(payload, message) {
   const { name, email, message: userMessage } = payload;
 
+  // Validate environment variables
+  if (!process.env.EMAIL_ADDRESS || !process.env.GMAIL_PASSKEY) {
+    console.error('Missing environment variables:', {
+      EMAIL_ADDRESS: !!process.env.EMAIL_ADDRESS,
+      GMAIL_PASSKEY: !!process.env.GMAIL_PASSKEY,
+    });
+    throw new Error('Email configuration is incomplete. Please check environment variables.');
+  }
+
+  // Create transporter inside function for serverless environment
+  // This ensures fresh connection for each request
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.EMAIL_ADDRESS,
+      pass: process.env.GMAIL_PASSKEY,
+    },
+    tls: {
+      rejectUnauthorized: false
+    },
+    connectionTimeout: 30000, // 30 seconds for serverless
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
+  });
+
   const mailOptions = {
-    from: "Portfolio",
+    from: `"Portfolio Contact" <${process.env.EMAIL_ADDRESS}>`,
     to: process.env.EMAIL_ADDRESS,
     subject: `New Message From ${name}`,
     text: message,
@@ -64,53 +59,64 @@ async function sendEmail(payload, message) {
   };
 
   try {
-    await transporter.sendMail(mailOptions);
-    return true;
+    // Verify connection before sending
+    await transporter.verify();
+    console.log('SMTP connection verified successfully');
+
+    // Send email
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', info.messageId);
+    return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error('Error while sending email:', error.message);
-    return false;
+    console.error('Error while sending email:', {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      stack: error.stack,
+    });
+    throw error;
   }
-};
+}
 
 export async function POST(request) {
   try {
     const payload = await request.json();
     const { name, email, message: userMessage } = payload;
-    // const token = process.env.TELEGRAM_BOT_TOKEN;
-    // const chat_id = process.env.TELEGRAM_CHAT_ID;
 
-    // Validate environment variables
-    // if (!token || !chat_id) {
-    //   return NextResponse.json({
-    //     success: false,
-    //     message: 'Telegram token or chat ID is missing.',
-    //   }, { status: 400 });
-    // }
+    // Validate request payload
+    if (!name || !email || !userMessage) {
+      return NextResponse.json({
+        success: false,
+        message: 'Missing required fields: name, email, or message.',
+      }, { status: 400 });
+    }
 
     const message = `New message from ${name}\n\nEmail: ${email}\n\nMessage:\n\n${userMessage}\n\n`;
 
-    // Send Telegram message
-    // const telegramSuccess = await sendTelegramMessage(token, chat_id, message);
+    console.log('Processing contact form submission from:', email);
 
     // Send email
-    const emailSuccess = await sendEmail(payload, message);
-
-    if (emailSuccess) {
-      return NextResponse.json({
-        success: true,
-        message: 'Message and email sent successfully!',
-      }, { status: 200 });
-    }
+    const result = await sendEmail(payload, message);
 
     return NextResponse.json({
-      success: false,
-      message: 'Failed to send message or email.',
-    }, { status: 500 });
+      success: true,
+      message: 'Message sent successfully!',
+    }, { status: 200 });
+
   } catch (error) {
-    console.error('API Error:', error.message);
+    console.error('API Error:', {
+      message: error.message,
+      stack: error.stack,
+    });
+
+    // Return user-friendly error message
+    const errorMessage = error.message.includes('environment variables')
+      ? 'Email service is not configured properly. Please contact the administrator.'
+      : 'Failed to send message. Please try again later or contact via email directly.';
+
     return NextResponse.json({
       success: false,
-      message: 'Server error occurred.',
+      message: errorMessage,
     }, { status: 500 });
   }
-};
+}
