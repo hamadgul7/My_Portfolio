@@ -17,30 +17,50 @@ body {
   background-color: #0d1224;
 }
 
-#sticky-card-1 {
-  --index: 1;
+@keyframes bounce-right {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
 }
 
-#sticky-card-2 {
-  --index: 2;
+@keyframes bounce-left {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-10px);
+  }
 }
 
-#sticky-card-3 {
-  --index: 3;
+.animate-bounce-right {
+  animation: bounce-right 1s infinite;
 }
 
-#sticky-card-4 {
-  --index: 4;
+.animate-bounce-left {
+  animation: bounce-left 1s infinite;
 }
 
-#sticky-card-5 {
-  --index: 5;
+/* Carousel 3D Effect */
+.slick-slide {
+  transition: all 0.5s ease;
+  transform: scale(0.9);
+  opacity: 0.5;
+  filter: blur(2px);
 }
 
-#sticky-card-6 {
-  --index: 6;
-}
-
-.sticky-card {
-  top: calc(var(--index) * 4rem);
+.slick-center {
+  transform: scale(1.05);
+  /* Zoom in central slide */
+  opacity: 1;
+  filter: blur(0);
+  z-index: 10;
 }

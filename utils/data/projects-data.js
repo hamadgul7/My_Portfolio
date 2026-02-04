@@ -10,33 +10,6 @@ export const projectsData = [
     },
     {
         id: 2,
-        name: 'Hostel Management System I',
-        description: "Developed a foundational Hostel Management System in Java using file handling techniques. This version was built without OOP principles or graphical user interfaces, focusing on core backend logic and data management.",
-        tools: ['Java', 'Files', 'NetBeans'],
-        role: 'Backend Developer',
-        code: '',
-        demo: '',
-    },
-    {
-        id: 3,
-        name: 'Hostel Management System II',
-        description: "Upgraded the Hostel Management System using Java with Object-Oriented Programming concepts and a GUI built with Java Swing. Enhanced maintainability and user interaction by applying structured design principles.",
-        tools: ['Java', 'Files', 'Swing', 'NetBeans'],
-        role: 'Full Stack Developer',
-        code: '',
-        demo: '',
-    },
-    {
-        id: 4,
-        name: 'Blogs Application',
-        description: "Built a full-featured blog platform with authentication, post management, and secure APIs using Express.js and MongoDB. Integrated EJS for server-side rendering and applied JWT for secure user sessions.",
-        tools: ['Express', 'MongoDB', 'EJS', 'NodeJS', 'JWT', 'HTML', 'CSS'],
-        role: 'Full Stack Developer',
-        code: '',
-        demo: '',
-    },
-    {
-        id: 5,
         name: 'Compliance Management Platform',
         description: "Currently developing the backend of a compliance web application designed to help organizations align with SOC 2 and HIPAA frameworks. Responsible for building secure and scalable APIs, managing MongoDB schemas, and implementing logic for control mappings, evidence tracking, and user access control. The system is designed to streamline compliance workflows and automate readiness assessments.",
         tools: ['NodeJS', 'Express', 'MongoDB', 'JWT', 'Mongoose', 'AWS S3', 'SOC 2', 'HIPAA', 'Cloudinary', 'Node Mailer'],
@@ -45,28 +18,87 @@ export const projectsData = [
         demo: '',
     },
     {
-        id: 6,
+        id: 3,
         name: 'Scrubber',
         description: "Developed a CSV cleaning system that removes duplicate or common numbers by cross-checking against a central MySQL database. Implemented stream-based CSV parsing with csv-parser and fast-csv to handle large files efficiently without memory overload. Designed a job queue with Redis and Bull to process user-uploaded files asynchronously, ensuring scalability and fault tolerance. Built a temporary table mechanism in MySQL to validate and compare user data against existing records for accurate filtering. Automated generation of cleaned CSV output files for end-users, improving data quality and usability. Optimized database operations with connection pooling to achieve reliable high-throughput processing. Improved user experience by delivering fast and accurate CSV reports, reducing manual cleanup effort.",
         tools: ['NodeJS', 'Express', 'MySQL', 'Redis', 'Bull', 'csv-parser', 'fast-csv', 'Connection Pooling', 'JWT', 'Node Mailer'],
         role: 'Backend Developer',
         code: '',
         demo: ''
-    }
+    },
+    {
+        id: 4,
+        name: 'Firewall',
+        description: "Developed a robust IP whitelist management system with automated iptables integration for Linux servers. Built RESTful APIs with Express.js and MySQL to manage IPs, companies, and ports, featuring full CRUD, JWT-based authentication, pagination, and search. Enabled CSV bulk uploads with intelligent validation and duplicate detection. Designed an autonomous monitoring agent that syncs database changes with firewall rules every 5 minutes, ensuring real-time updates. Implemented dynamic rule management, advanced logging, and error handling, supporting both port-specific and all-port security configurations.",
+        tools: ['NodeJS', 'Express', 'MySQL', 'JWT', 'iptables', 'csv-parser', 'Multer', 'Linux', 'Shell Scripting', 'Bcrypt', 'Nodemon'],
+        role: 'Full Stack Backend Developer',
+        code: '',
+        demo: '',
+    },
+    {
+        id: 5,
+        name: 'Glitzify (E-Commerce)',
+        description: "Architected the backend infrastructure for Glitzify, a scalable multi-vendor e-commerce platform. Designed and implemented secure RESTful APIs using Node.js and Express to manage complex workflows including user authentication, product inventory, and order processing. Integrated Cloudinary for high-performance media storage and Nodemailer for automated transactional emails. Developed a comprehensive admin dashboard offering advanced analytics on sales, orders, and user engagement. Leveraged MongoDB for flexible data modeling and ensured robust security with JWT-based authentication and role-based access control.",
+        tools: ['NodeJS', 'Express', 'MongoDB', 'Mongoose', 'Cloudinary', 'JWT', 'Nodemailer', 'Multer'],
+        role: 'Backend Developer',
+        code: '',
+        demo: '',
+    },
+    {
+        id: 6,
+        name: 'Phone Search',
+        description: "Architected a high-performance RESTful API for phone number search and bulk processing, handling 2.2 billion records with sub-second query response. Supported bulk CSV searches up to 10,000 numbers within 5 seconds. Implemented JWT authentication, Redis caching for low-latency queries, MySQL for storage, and Multer for file uploads. Designed for scalability, speed, and reliability in large-scale data retrieval.",
+        tools: ['NodeJS', 'Express', 'MySQL', 'Redis', 'JWT', 'Multer', 'csv-parser', 'Bcrypt', 'Nodemon'],
+        role: 'Backend Developer',
+        code: '',
+        demo: '',
+    },
+    {
+        id: 7,
+        name: 'NPA-Based Number Allocation',
+        description: "Developed an intelligent number allocation system that returns U.S. numbers based on specific NPAs (area codes) from dialer requests, replacing a legacy state-based system. Key features include precise localization to ensure outbound calls match the target area code for higher connect rates. Utilizes Redis counters for sequential, high-speed number allocation and MySQL for data management. Integrated with PM2 for efficient process management.",
+        tools: ['NodeJS', 'Express', 'MySQL', 'Redis', 'Nginx', 'PM2', 'Linux'],
+        role: 'Backend Developer',
+        code: '',
+        demo: '',
+    },
+    {
+        id: 8,
+        name: 'Dial-State',
+        description: "Developed an intelligent state-aware number allocation API that dynamically returns U.S. numbers based on the incoming area code (NPA) from dialer requests. Replaced a legacy random allocation system with precise, context-aware mapping to enhance call connect rates and local presence. Utilized Redis for high-speed, sequential counter-based retrieval and MySQL for structured data management. Integrated with PM2 for efficient process monitoring and automated the entire number mapping workflow.",
+        tools: ['NodeJS', 'Express', 'MySQL', 'Redis', 'Nginx', 'PM2', 'Linux'],
+        role: 'Backend Developer',
+        code: '',
+        demo: '',
+    },
+    {
+        id: 9,
+        name: 'Hostel Management System I',
+        description: "Developed a foundational Hostel Management System in Java using file handling techniques. This version was built without OOP principles or graphical user interfaces, focusing on core backend logic and data management.",
+        tools: ['Java', 'Files', 'NetBeans'],
+        role: 'Backend Developer',
+        code: '',
+        demo: '',
+    },
+    {
+        id: 10,
+        name: 'Hostel Management System II',
+        description: "Upgraded the Hostel Management System using Java with Object-Oriented Programming concepts and a GUI built with Java Swing. Enhanced maintainability and user interaction by applying structured design principles.",
+        tools: ['Java', 'Files', 'Swing', 'NetBeans'],
+        role: 'Full Stack Developer',
+        code: '',
+        demo: '',
+    },
+    {
+        id: 11,
+        name: 'Blogs Application',
+        description: "Built a full-featured blog platform with authentication, post management, and secure APIs using Express.js and MongoDB. Integrated EJS for server-side rendering and applied JWT for secure user sessions.",
+        tools: ['Express', 'MongoDB', 'EJS', 'NodeJS', 'JWT', 'HTML', 'CSS'],
+        role: 'Full Stack Developer',
+        code: '',
+        demo: '',
+    },
+
 
 
 ];
-
-
-// Do not remove any property.
-// Leave it blank instead as shown below
-
-// {
-//     id: 1,
-//     name: '',
-//     description: "",
-//     tools: [],
-//     role: '',
-//     code: '',
-//     demo: '',
-// },
