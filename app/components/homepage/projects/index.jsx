@@ -35,7 +35,7 @@ function PrevArrow(props) {
 
 const Projects = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -58,6 +58,7 @@ const Projects = () => {
           slidesToShow: 1,
           centerPadding: "0px",
           arrows: false,
+          dots: false,
         }
       }
     ]
