@@ -66,24 +66,19 @@ const Projects = () => {
 
   return (
     <div id='projects' className="relative z-50 my-12 lg:my-24">
-      <div className="sticky top-10 lg:static"> {/* Changed to static on LG for default, but actually user wants it sticky on desktop? Wait, sticky top-10 was there. */}
-        {/* The user issue: "PROJECTS" header persists. I'll make it static on mobile, and sticky on desktop if it was intended. */}
+      <div className="relative mb-8 lg:mb-16">
+        <div className="w-[80px] h-[80px] bg-violet-100 rounded-full absolute -top-3 left-0 translate-x-1/2 filter blur-3xl opacity-30"></div>
+        <div className="flex items-center justify-start relative px-4 lg:px-0">
+          <span className="bg-[#1a1443] w-fit text-white px-5 py-3 text-xl rounded-md">
+            PROJECTS
+          </span>
+          <span className="w-full h-[2px] bg-[#1a1443]"></span>
+        </div>
       </div>
 
-      {/* Restructuring for better control */}
-      <div className="relative">
-        <div className="sticky top-10 lg:top-24 z-10 mb-8 lg:mb-16">
-          <div className="w-[80px] h-[80px] bg-violet-100 rounded-full absolute -top-3 left-0 translate-x-1/2 filter blur-3xl opacity-30"></div>
-          <div className="flex items-center justify-start relative px-4 lg:px-0">
-            <span className="bg-[#1a1443] w-fit text-white px-5 py-3 text-xl rounded-md">
-              PROJECTS
-            </span>
-            <span className="w-full h-[2px] bg-[#1a1443]"></span>
-          </div>
-        </div>
-
+      <div className="pt-8 lg:pt-12">
         {/* Desktop Carousel - Hidden on Mobile */}
-        <div className="hidden lg:block pt-12 px-12">
+        <div className="hidden lg:block px-12">
           <Slider {...settings}>
             {projectsData.map((project, index) => (
               <div key={index} className="px-2">
