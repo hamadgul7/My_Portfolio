@@ -66,26 +66,45 @@ const Projects = () => {
 
   return (
     <div id='projects' className="relative z-50 my-12 lg:my-24">
-      <div className="sticky top-10">
-        <div className="w-[80px] h-[80px] bg-violet-100 rounded-full absolute -top-3 left-0 translate-x-1/2 filter blur-3xl opacity-30"></div>
-        <div className="flex items-center justify-start relative">
-          <span className="bg-[#1a1443] absolute left-0 w-fit text-white px-5 py-3 text-xl rounded-md">
-            PROJECTS
-          </span>
-          <span className="w-full h-[2px] bg-[#1a1443]"></span>
-        </div>
+      <div className="sticky top-10 lg:static"> {/* Changed to static on LG for default, but actually user wants it sticky on desktop? Wait, sticky top-10 was there. */}
+        {/* The user issue: "PROJECTS" header persists. I'll make it static on mobile, and sticky on desktop if it was intended. */}
       </div>
 
-      <div className="pt-24 px-4 lg:px-12">
-        <Slider {...settings}>
+      {/* Restructuring for better control */}
+      <div className="relative">
+        <div className="sticky top-10 lg:top-24 z-10 mb-8 lg:mb-16">
+          <div className="w-[80px] h-[80px] bg-violet-100 rounded-full absolute -top-3 left-0 translate-x-1/2 filter blur-3xl opacity-30"></div>
+          <div className="flex items-center justify-start relative px-4 lg:px-0">
+            <span className="bg-[#1a1443] w-fit text-white px-5 py-3 text-xl rounded-md">
+              PROJECTS
+            </span>
+            <span className="w-full h-[2px] bg-[#1a1443]"></span>
+          </div>
+        </div>
+
+        {/* Desktop Carousel - Hidden on Mobile */}
+        <div className="hidden lg:block pt-12 px-12">
+          <Slider {...settings}>
+            {projectsData.map((project, index) => (
+              <div key={index} className="px-2">
+                <div className="box-border flex items-center justify-center rounded shadow-[0_0_30px_0_rgba(0,0,0,0.3)] transition-all duration-[0.5s] h-full w-full mx-auto max-w-2xl">
+                  <ProjectCard project={project} />
+                </div>
+              </div>
+            ))}
+          </Slider>
+        </div>
+
+        {/* Mobile Native Scroll Snap - Visible on Mobile Only */}
+        <div className="lg:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 px-6 pb-8 no-scrollbar">
           {projectsData.map((project, index) => (
-            <div key={index} className="px-2"> {/* Added padding wrapper for card spacing */}
-              <div className="box-border flex items-center justify-center rounded shadow-[0_0_30px_0_rgba(0,0,0,0.3)] transition-all duration-[0.5s]  h-full w-full mx-auto max-w-2xl">
+            <div key={index} className="min-w-[85%] snap-center">
+              <div className="box-border flex items-center justify-center rounded shadow-[0_0_20px_0_rgba(0,0,0,0.3)] h-full w-full">
                 <ProjectCard project={project} />
               </div>
             </div>
           ))}
-        </Slider>
+        </div>
 
         {/* Mobile Swipe Hint */}
         <div className="flex justify-center mt-2 lg:hidden">
