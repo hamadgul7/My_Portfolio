@@ -11,7 +11,7 @@ function NextArrow(props) {
   const { onClick } = props;
   return (
     <div
-      className="absolute group !flex items-center justify-center bg-[#1a1443] hover:bg-[#16f2b3] rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:scale-110"
+      className="absolute group hidden lg:flex items-center justify-center bg-[#1a1443] hover:bg-[#16f2b3] rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:scale-110"
       style={{ width: '80px', height: '80px', right: '-80px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
       onClick={onClick}
     >
@@ -24,7 +24,7 @@ function PrevArrow(props) {
   const { onClick } = props;
   return (
     <div
-      className="absolute group !flex items-center justify-center bg-[#1a1443] hover:bg-[#16f2b3] rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:scale-110"
+      className="absolute group hidden lg:flex items-center justify-center bg-[#1a1443] hover:bg-[#16f2b3] rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:scale-110"
       style={{ width: '80px', height: '80px', left: '-80px', top: '50%', transform: 'translateY(-50%)', zIndex: 10 }}
       onClick={onClick}
     >
