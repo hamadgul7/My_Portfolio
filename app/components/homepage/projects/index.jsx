@@ -53,10 +53,11 @@ const Projects = () => {
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 640,
         settings: {
           slidesToShow: 1,
           centerPadding: "0px",
+          arrows: false,
         }
       }
     ]
@@ -84,6 +85,15 @@ const Projects = () => {
             </div>
           ))}
         </Slider>
+
+        {/* Mobile Swipe Hint */}
+        <div className="flex justify-center mt-2 lg:hidden">
+          <div className="flex items-center gap-2 text-[#16f2b3] animate-pulse">
+            <FaArrowLeft />
+            <span className="text-sm">Swipe for more</span>
+            <FaArrowRight />
+          </div>
+        </div>
       </div>
     </div>
   );

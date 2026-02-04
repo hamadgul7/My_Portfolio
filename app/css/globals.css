@@ -64,3 +64,17 @@ body {
   filter: blur(0);
   z-index: 10;
 }
+
+/* Custom Slick Dots */
+.slick-dots li button:before {
+  font-size: 12px;
+  color: rgb(156, 163, 175);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.slick-dots li.slick-active button:before {
+  color: #16f2b3;
+  opacity: 1;
+  font-size: 14px;
+}
