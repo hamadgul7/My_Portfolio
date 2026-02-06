@@ -1,17 +1,45 @@
-// @flow strict
+"use client";
 
 import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import Link from "next/link";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
-import { SiLeetcode } from "react-icons/si";
+import ScrambleText from "../../helper/scramble-text";
+import { motion } from "framer-motion";
 
 function HeroSection() {
   return (
-    <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
+    <section className="relative flex flex-col items-center justify-between py-4 lg:py-12 overflow-hidden">
+      {/* Floating Background Elements */}
+      <motion.div
+        animate={{
+          y: [0, -20, 0],
+          x: [0, 10, 0],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-20 left-10 w-64 h-64 bg-violet-600/20 rounded-full blur-[100px] -z-10"
+      />
+      <motion.div
+        animate={{
+          y: [0, 20, 0],
+          x: [0, -10, 0],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 7,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute bottom-20 right-10 w-80 h-80 bg-pink-600/10 rounded-full blur-[100px] -z-10"
+      />
+
       <Image
         src="/hero.svg"
         alt="Hero"
@@ -25,9 +53,13 @@ function HeroSection() {
           <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
             Hello, <br />
             This is {' '}
-            <span className=" text-pink-500">{personalData.name}</span>
+            <span className=" text-pink-500">
+              <ScrambleText text={personalData.name} delay={500} />
+            </span>
             {` , I'm a Professional `}
-            <span className=" text-[#16f2b3]">{personalData.designation}</span>
+            <span className=" text-[#16f2b3]">
+              <ScrambleText text={personalData.designation} delay={1500} />
+            </span>
             .
           </h1>
 

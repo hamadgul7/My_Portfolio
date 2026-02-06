@@ -6,6 +6,7 @@ import Experience from "./components/homepage/experience";
 import HeroSection from "./components/homepage/hero-section";
 import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
+import ScrollReveal from "./components/helper/scroll-reveal";
 
 async function getData() {
   try {
@@ -31,12 +32,24 @@ export default async function Home() {
   return (
     <div suppressHydrationWarning >
       <HeroSection />
-      <AboutSection />
-      <Experience />
-      <Skills />
-      <Projects />
-      <Education />
-      <ContactSection />
+      <ScrollReveal>
+        <AboutSection />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Experience />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Skills />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Projects />
+      </ScrollReveal>
+      <ScrollReveal>
+        <Education />
+      </ScrollReveal>
+      <ScrollReveal>
+        <ContactSection />
+      </ScrollReveal>
     </div>
   )
 };
